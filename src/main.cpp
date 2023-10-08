@@ -1,4 +1,3 @@
-#include "include/lang.hpp"
 #include <cstring>
 #include <filesystem>
 #include <fstream>
@@ -7,8 +6,7 @@
 
 std::string add_leading_slash(const std::string &name)
 {
-    if (name.back() == '/')
-        return name;
+    if (name.back() == '/') return name;
     return std::string(name + "/");
 }
 
@@ -58,13 +56,14 @@ void setup_meson(const std::string &name, const std::string &lang)
     std::cout << "Created meson.build file!" << std::endl;
 }
 
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[])
+{
     if (argc != 3) {
         std::cout << "USAGE: project-generator <language> <name>" << std::endl;
     }
     std::string lang(argv[1]);
     std::cout << "argv[1] = " << argv[1] << std::endl;
-    std::unordered_set<std::string> langs {"c", "cpp", "c++"};
+    std::unordered_set<std::string> langs{"c", "cpp", "c++"};
     if (!langs.contains(lang)) {
         std::cout << "Language not supported yet!" << std::endl;
         return 0;
